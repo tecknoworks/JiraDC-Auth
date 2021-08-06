@@ -4,7 +4,7 @@ var cors = require('cors')
 const app = express()
 const authRoute = require('./routes/auth')
 
-const  dbURI = "mongodb+srv://Damaris:12345@cluster0.gdp4f.mongodb.net/myFirstDatabase?retryWrites=true&w=majority"
+const  dbURI = "mongodb+srv://cata:cata@cluster0.wcbqw.mongodb.net/first?retryWrites=true&w=majority"
 app.use(express.json())
 app.use(cors({origin: '*'}))
 app.use('', authRoute)
