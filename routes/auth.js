@@ -62,7 +62,6 @@ router.post('/signout', (req, res) => {
         res.status(500).json(error)
     })
 });
-
 router.get('/jwt-test', middleware.verify , (req, res) => {
     res.status(200).json(req.user)
 })
