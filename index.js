@@ -22,13 +22,12 @@ const db = mongoose.connection
 // app.use('', router)
 app.get('/allusers', async (req, res) => {
     const record = await User.find({})
-    console.log(record)
+    //console.log(record)
     res.json(record)
 });
 
 app.post('/allusers', async (req, res) => {
     let result = [];
-    console.log(req.body);
     if (req.body.length) {
         for (let index = 0; index < req.body.length; index++) {
             const user = await User.find({ '_id': req.body[index] })
@@ -37,6 +36,23 @@ app.post('/allusers', async (req, res) => {
     }
 
     res.json(result)
+});
+
+app.post('/allusersselected', async (req, res) => {
+        let result = [];
+        console.log(req.body)
+        if (req.body.length) {
+            for (let index = 0; index < req.body.length; index++) {
+                if(req.body[index]!==''){
+                    const user = await User.find({ '_id': req.body[index] })
+                    result.push(user[0]);
+                }else{
+                    result.push({username:"No assigned user"});
+                }
+            }
+        }
+        console.log(result)
+        res.json(result)
 });
 
 db.on("error", (err) => { console.error(err) })
