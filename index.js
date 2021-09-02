@@ -12,17 +12,8 @@ app.use(cors({ origin: '*' }))
 app.use('', authRoute)
 mongoose.connect(dbURI, { useNewUrlParser: true, useUnifiedTopology: true })
 const db = mongoose.connection
-// const router = express.Router()
-
-// router.post('/signup', (req, res) => {
-//     console.log("merge!")
-//     res.status(200).json("")
-// })
-
-// app.use('', router)
 app.get('/allusers', async (req, res) => {
     const record = await User.find({})
-    //console.log(record)
     res.json(record)
 });
 
@@ -40,7 +31,6 @@ app.post('/allusers', async (req, res) => {
 
 app.post('/allusersselected', async (req, res) => {
         let result = [];
-        console.log(req.body)
         if (req.body.length) {
             for (let index = 0; index < req.body.length; index++) {
                 if(req.body[index]!==''){
@@ -51,7 +41,6 @@ app.post('/allusersselected', async (req, res) => {
                 }
             }
         }
-        console.log(result)
         res.json(result)
 });
 
